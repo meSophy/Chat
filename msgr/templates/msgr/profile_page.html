@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load image_url_tags %}
+{% load message_content_filters %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'msgr/css/profile_page.css' %}">
+{% endblock %}
+
+{% block title %}{{ object.first_name }} - msgr{% endblock %}
+{% block h1 %}{% endblock %}
+
+{% block content %}
+
+<h1>
+    {{ object.first_name }}
+{% if object.last_name %}
+    {{ object.last_name }}
+{% endif %}
+</h1>
+
+<img src="{% get_profile_pic object.picture %}" alt="profile picture" class="profile-pic">
+
+<p>
+{% if object.identifier %}
+    @{{ object.identifier }}<br>
+{% endif %}
+{% if object.biography %}
+    {{ object.biography|inline_id }}<br>
+{% endif %}
+</p>
+
+<form method="post" action="{{ request.get_full_path }}">
+    {% csrf_token %}
+    <input type="submit" value="Chat">
+</form>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+# Project
+todo.txt
+media/profile_pics/*
+!media/profile_pics/avatar.png
+
+# Env
+.env/
+.venv/
+env/
+venv/
+
+# Python
+*.py[co]
+*~
+__pycache__
+
+# Django
+*.log
+project/settings/private.py
+
+# Visual Studio
+.vscode/
+.history/
+*.code-workspace
+
+# macOS
+._*
+.DS_Store
+.fseventsd
+.Spotlight-V100
+
+# Windows
+Thumbs.db*
+ehthumbs*.db
+[Dd]esktop.ini
+$RECYCLE.BIN/

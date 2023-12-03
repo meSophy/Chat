@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load image_url_tags %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'msgr/css/chats_list.css' %}">
+<link rel="stylesheet" href="{% static 'msgr/css/search_form.css' %}">
+{% endblock %}
+
+{% block title %}chats - msgr{% endblock %}
+{% block h1 %}<h1>Chats</h1>{% endblock %}
+
+{% block content %}
+
+{% include 'msgr/search_form.html' %}
+
+{% for join in join_list %}
+<div class="chat">
+    {% with profile=join.get_profile %}
+    <a href="{% url 'msgr:profile' profile.pk %}">
+        <img src="{% get_profile_pic profile.picture True %}" alt="profile thumbnail" class="thumbnail">
+    </a>
+    <div class="chat-title">
+        <a href="{% url 'msgr:chat' join.chat.pk %}">
+            {% if profile != user.profile %}
+                {{ profile.get_full_name }}
+            {% else %}
+                Saved Messages
+            {% endif %}
+        </a>
+    </div>
+    {% endwith %}
+    {% with unread_count=join.get_unread_count %}
+    {% if unread_count %}
+    <div class="unread-count">
+        {{ unread_count }}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="chat-date">
+        {{ join.chat.lat|date:"H:i m/d" }}
+    </div>
+</div>
+{% empty %}
+<div class="chat">
+    You don't have any chats.
+</div>
+{% endfor %}
+<hr>
+
+{% endblock %}

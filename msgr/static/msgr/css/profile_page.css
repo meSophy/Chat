@@ -1,0 +1,10 @@
+
+#content {
+    text-align: center;
+}
+
+@media screen and (min-width: 1000px) {
+    #content {
+        padding-top: 30%;
+    }
+}
