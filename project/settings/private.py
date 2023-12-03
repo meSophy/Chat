@@ -10,6 +10,6 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['23.20.196.206', '127.0.0.1', 'ec2-23-20-196-206.compute-1.amazonaws.com']
 
 TIME_ZONE = 'Europe/Kiev'
